@@ -40,7 +40,7 @@ class HNetwork:
             for i in xrange(self.dim):
                 self.heir[h][i] = [];
 
-            # there are b^{h-i} subtrees at level i, initialize counts to zero
+            # there are b^{l-i} subtrees at level i, initialize counts to zero
             self.heirct[h] = {};
             subtrees = self.dim;
             for i in xrange(self.l):
@@ -118,6 +118,7 @@ class HNetwork:
             if ni != pi:
                 if r < self.heirct[h][d-1][ni]:
                     return self.get_node(h, d-1, ni, r);
+                r = r - self.heirct[h][d-1][ni];
 
     # get the idx-th node in the ci-th subtree of level d in heirarchy h
     def get_node(self, h, d, ci, idx):
