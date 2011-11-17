@@ -132,13 +132,20 @@ class HNetwork:
                 return self.get_node(h, d-1, ni, idx);
             idx = idx - self.hierct[h][d-1][ni];
 
-    # hierarchical distance between two nodes
-    def dist(self, s, t, h):
-        si = self.G.node[s]['h'][h]
-        ti = self.G.node[t]['h'][h]
-        d = 0
+    # hierarchical distance between two nodes across all hierarchies
+    def dist(self, s, t):
+        d = float("inf");
+        for h in xrange(self.H):
+            d = min(d, self.dist_single(s, t, h));
+        return d;
+    
+    # hierarchical distance between two nodes in a single hierarchy
+    def dist_single(self, s, t, h):
+        si = self.G.node[s]['h'][h];
+        ti = self.G.node[t]['h'][h];
+        d = 0;
         while si != ti:
             si = si / self.b;
             ti = ti / self.b;
             d = d + 1;
-        return d
+        return d;
