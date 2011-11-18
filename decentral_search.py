@@ -43,12 +43,14 @@ class PerfectDecentralizedSearch:
     #   s    start node
     #   t    goal node
     def next_hop(self, N, s, t):
-        min_v = float("inf");
+        min_v = [];
         min_d = float("inf");
         for v in N.G.neighbors(s):
             d = N.dist(v, t);
             if d < min_d:
-                min_v = v;
+                min_v = [v];
                 min_d = d;
+            elif d == min_d:
+                min_v.append(v);
         
-        return v;
+        return random.choice(min_v);
