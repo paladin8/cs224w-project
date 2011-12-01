@@ -1,6 +1,7 @@
 #include <vector>
 #include <cstdlib>
 #include <cmath>
+#include <ctime>
 
 #include "hnetwork.h"
 
