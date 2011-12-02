@@ -7,8 +7,9 @@ using namespace std;
 
 int main() {
   clock_t start = clock();
-  ConstantDegDist dd(300);
-  HNetwork hn(2, 10, 2, 100, 1, dd);
+  ConstantDegDist dd(99);
+  // PowerLawDegDist dd(2.5, 40, 2000);
+  HNetwork hn(2, 13, 2, 100, 1, dd);
   double diff = (1.0*clock() - start) / CLOCKS_PER_SEC;
 
   cout << "Random HNetwork generated:" << endl;

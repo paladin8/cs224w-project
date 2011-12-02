@@ -78,7 +78,7 @@ void HNetwork::init_exp_dist() {
 // pick random degree from degree distribution, add edges randomly
 // by choosing random hierarchy, then random distance, then random node
 int HNetwork::add_random_edges(int s) {
-  int num_edges = dd.rand();
+  int num_edges = dd.rand_deg();
   for (int i = 0; i < num_edges; i++) {
     int h = rand() % H;
     int d = random_dist();
