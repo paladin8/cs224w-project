@@ -12,8 +12,8 @@ using namespace std;
 class HNetwork {
 public:
   HNetwork(int H, int l, int b, int g, double a, DegDist& dd);
-  const vector<int>& get_neighbors(int s);
-
+  const vector<int>& get_neighbors(int s) { return adj[s]; }
+  
   int dist(int s, int t);
   int dist_single(int s, int t, int h);
 
