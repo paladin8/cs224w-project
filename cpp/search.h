@@ -13,10 +13,10 @@ class DecentralizedSearch {
 
 class SoftmaxDecentralizedSearch : public DecentralizedSearch {
  public:
-  SoftmaxDecentralizedSearch(double alpha);
+  SoftmaxDecentralizedSearch(double beta);
 
  protected:
-  double alpha;
+  double beta;
   int next_hop(HNetwork& N, int s, int t);
 };
 

@@ -99,9 +99,10 @@ int HNetwork::random_dist() {
   double r = 1.0*rand()/RAND_MAX;
   for (int d = 0; d < l; d++) {
     r -= exp(-a*d)/exp_norm;
-    if (r <= 0) return d;
+    if (r < 1e-8) return d;
   }
-  return -1;
+  cout << "ERROR: probability distribution sums to < 1." << endl;
+  exit(1);
 }
 
 // random node in the graph which is at distance d in hierarchy h from s
