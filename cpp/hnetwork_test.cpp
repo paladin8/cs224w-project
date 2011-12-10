@@ -1,5 +1,6 @@
 #include <iostream>
 #include <ctime>
+#include <cstdlib>
 
 #include "deg_dist.h"
 #include "hnetwork.h"
@@ -7,15 +8,17 @@
 
 using namespace std;
 
-#define NUM_SEARCHES 5000
+#define NUM_SEARCHES 100000
 #define P 0.25
 
 static void test_search(DecentralizedSearch& S, HNetwork& N);
 
 int main() {
+  srand(time(NULL));
+
   clock_t start = clock();
   ConstantDegDist dd(99);
-  // PowerLawDegDist dd(2.5, 40, 2000);
+  // PowerLawDegDist dd(2.5, 40, 1500);
   HNetwork hn(2, 13, 2, 100, 1, dd);
   double diff = (1.0*clock() - start) / CLOCKS_PER_SEC;
 
@@ -33,18 +36,18 @@ int main() {
   PerfectDecentralizedSearch p;
   test_search(p, hn);
 
-  double alpha = 50;
-  cout << endl << "Imperfect Decentralized Search (alpha = "
-       << alpha << "):" << endl;
-  SoftmaxDecentralizedSearch d(alpha);
-  test_search(d, hn);
-  
+  /* double beta = 6;
+  cout << endl << "Imperfect Decentralized Search (beta = "
+       << beta << "):" << endl;
+  SoftmaxDecentralizedSearch d(beta);
+  test_search(d, hn); */
+
   return 0;
 }
 
 static void test_search(DecentralizedSearch& S, HNetwork& N) {
   double total_cost = 0.0;
-  double num_successes = 0.0;
+  int num_successes = 0;
 
   clock_t start = clock();
   int i;
@@ -62,9 +65,9 @@ static void test_search(DecentralizedSearch& S, HNetwork& N) {
   if (num_successes > 0) {
     avg_length = total_cost / num_successes;
   }
-  
-  cout << "\tsuccess rate = " << num_successes / NUM_SEARCHES << endl;
+
+  cout << "\tsuccess rate = " << 1.0*num_successes / NUM_SEARCHES << endl;
   cout << "\taverage search length = " << avg_length << endl;
-  cout << "\tTook " << diff << " seconds for " 
+  cout << "\tTook " << diff << " seconds for "
        << NUM_SEARCHES << " searches" << endl;
 }
