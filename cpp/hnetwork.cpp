@@ -62,6 +62,26 @@ void HNetwork::init_random_network() {
       }
     }
 
+  /* for (int h = 0; h < H; h++) {
+    vector<int> p(N);
+    for (int s = 0; s < N; s++) {
+      p[s] = s;
+      if (1.0*rand()/RAND_MAX > 1.0/(s+1)) {
+        int idx = rand() % s;
+        swap(p[idx], p[s]);
+      }
+    }
+    for (int idx = 0; idx < N; idx++) {
+      int s = p[idx], i = idx / g;
+      node_h[s].push_back(i);
+      hier[h][i].push_back(s);
+      for (int j = 0; j < l; j++) {
+        hierct[h][j][i]++;
+        i /= b;
+      }
+    }
+  } */
+
   init_exp_dist();
 
   // randomly add edges from each node
